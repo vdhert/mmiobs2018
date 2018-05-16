@@ -9,7 +9,7 @@ class Lattice():
         self.grain = 0.1
         self.zero = zero
 
-    def cast(self, coordinates):
+    def cast(self, coordinates): 
         moved_coordinates = coordinates - self.zero #moving atom coordinates
         bin = np.array([math.floor(x) for x in moved_coordinates/self.grain]) #putting atom into bin
         return bin
@@ -33,7 +33,6 @@ class PDBreader():
     def read(self, pdb_file):
         seq = [] #protein sequence
         ca_positions = []
-        pdb_splitted = [] #all atoms from pdb file
         min_ca_pos = np.array([math.inf,math.inf,math.inf], dtype=float)
 
 
