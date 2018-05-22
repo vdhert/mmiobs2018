@@ -25,4 +25,15 @@
     'DLY': 'K', 'LYM': 'K', 'LLY': 'K', 'LYZ': 'K', 'KCX': 'K', 'LLP': 'K', 'TRG': 'K', 'SHR': 'K',
     'ALY': 'K',
     'ARM': 'R', 'ACL': 'R', 'HAR': 'R', 'HMR': 'R', 'AGM': 'R', 'DAR': 'R',
-    'HIC': 'H', '3AH': 'H', 'NEM': 'H', 'NEP': 'H', 'DHI': 'H', 'MHS': 'H', 'HIP': 'H', }
+    'HIC': 'H', '3AH': 'H', 'NEM': 'H', 'NEP': 'H', 'DHI': 'H', 'MHS': 'H', 'HIP': 'H', 
+'ILE': 'I', 'GLN': 'Q',
+    'GLX': 'Z', 'GLY': 'G',
+    'GLU': 'E', 'CYS': 'C',
+    'HIS': 'H', 'SER': 'S',
+    'LYS': 'K', 'PRO': 'P',
+    'ASX': 'B', 'ASN': 'N',
+    'VAL': 'V', 'THR': 'T',
+    'ASP': 'D', 'TRP': 'W',
+    'PHE': 'F', 'ALA': 'A',
+    'MET': 'M', 'LEU': 'L',
+    'ARG': 'R', 'TYR': 'Y'}
