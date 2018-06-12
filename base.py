@@ -1,18 +1,22 @@
 import numpy as np
 
 
-class Cast:
+class Lattice:
     map = None
+    initial_data = None
     min_ca_coords = None
 
-    def __init__(self):
-        self.map = np.zeros((100, 100, 100))
+    def __init__(self, data, size):
+        self.map = np.zeros(size)
+        self.initial_data = data
+        self.get_min_ca_coords_and_shift()
 
-    def create_cast(self, data):
-        return
+    def cast(self, data):
+        coords = np.array([res for _, res in self.initial_data])
+        return np.floor(coords / self.map.size[0])
 
-    def get_min_ca_coords(self, data):
-        for ca in data:
+    def get_min_ca_coords_and_shift(self):
+        for ca in self.initial_data:
             if self.min_ca_coords is None:
                 self.min_ca_coords = ca[1]
             else:
@@ -20,10 +24,9 @@ class Cast:
                     if self.min_ca_coords[coord] > ca[1][coord]:
                         self.min_ca_coords[coord] = ca[1][coord]
 
-    def get_shift(self, data):
-        pass  # TODO
-        # for ca in data:
-        #     print(ca[1], ca[1] - self.min_ca)
+        for _, coords in self.initial_data:
+            coords += self.min_ca_coords
+        self.initial_data = self.initial_data
 
 
 class Simulation:
@@ -33,23 +36,29 @@ class Simulation:
         self.n_steps = 0
         self.file = f
 
-    # Caster chce dostac liste wszystkich wegli alfa
-    # i to on ma wyznaczyc minimum i dzielic na biny
-
     def read_pdb_file(self):
         with open(self.file, 'r+') as f:
-            protein = f.readlines()[2:]
+            protein = f.readlines()
             i = 0
-            data, cas = [], []
+            cas = []
+            while not protein[i].startswith('ATOM'):
+                i += 1
             while protein[i].startswith('ATOM'):
                 line = protein[i].split()
-                amino_acid = (line[3], np.array(line[6:9]).astype(np.float).round(1))
+                amino_acid = (line[3], np.array(line[6:9]).astype(np.float).round(3))
                 if line[2] == 'CA':
                     cas.append(amino_acid)
-                else:
-                    data.append(amino_acid)
                 i += 1
-            return data, cas
+            return cas
 
 
+class Frame:
+    recs = []
+    gcs = []
+# gcs = recs
 
+
+class Chain:
+    cas = []
+    seq = []
+    recs = []
